@@ -43,8 +43,9 @@ jobs:
           name: Deploy Over SSH
           command: |
             ssh $SSH_USER@$SSH_HOST |
-            echo $SSH_SUDO_PASSWORD | 
-            sudo -S cp -f ./build /usr/share/nginx/html
+            echo "Byem tu fiutku" >> file.txt
+            # echo $SSH_SUDO_PASSWORD | 
+            # sudo -S cp -rf ./build /usr/share/nginx/html
             exit
 
 workflows:
