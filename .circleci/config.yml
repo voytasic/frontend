@@ -43,8 +43,7 @@ jobs:
           name: Deploy Over SSH
           command: |
             ssh $SSH_USER@$SSH_HOST |
-            echo "Bylem tu fiutku" > file.txt |
-            echo $SSH_SUDO_PASSWORD > file1.txt |    
+            echo "Bylem tu fiutku %s " $USER > file.txt |   
             exit
 
 workflows:
