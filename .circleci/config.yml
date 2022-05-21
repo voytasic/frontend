@@ -16,10 +16,10 @@ jobs:
       - run:
           command: npm run build
           name: Build app 
-      - persist_to_workspace:
-          root: .          
-          paths:
-            - build/* 
+      # - persist_to_workspace:
+      #     root: .          
+      #     paths:
+      #       - build/* 
   deploy:
     working_directory: ~/project
     machine:
@@ -36,16 +36,16 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/project
-      - add_ssh_keys:
-            fingerprints:
-              - "2a:ed:4a:84:3a:ef:67:f3:90:b6:a8:a8:47:d5:28:38"
+      # - add_ssh_keys:
+      #       fingerprints:
+      #         - "2a:ed:4a:84:3a:ef:67:f3:90:b6:a8:a8:47:d5:28:38"
       - run:
           name: Deploy Over SSH
           command: |
             ssh $SSH_USER@$SSH_HOST |
             echo "Byem tu fiutku" >> file.txt |
-            # echo $SSH_SUDO_PASSWORD | 
-            # sudo -S cp -rf ./build /usr/share/nginx/html
+            echo $SSH_SUDO_PASSWORD | 
+            sudo -S cp -rf ./build /usr/share/nginx/html
             exit
 
 workflows:
