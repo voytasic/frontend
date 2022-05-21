@@ -47,10 +47,8 @@ jobs:
       - run:
           name: Copy files
           command: |
-            scp ./build $SSH_USER@$SSH_HOST:/tmp
+            scp /build $SSH_USER@$SSH_HOST:/tmp
           
-      
-
 workflows:
   build_test_deploy: 
     jobs:
