@@ -16,10 +16,10 @@ jobs:
       - run:
           command: npm run build
           name: Build app 
-      # - persist_to_workspace:
-      #     root: .          
-      #     paths:
-      #       - build/* 
+      - persist_to_workspace:
+          root: ~/project         
+          paths:
+            - build/*
   deploy: # deployment to reactcode.pl
 
     working_directory: ~/project
@@ -41,13 +41,8 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST "
-            mkdir tmp |         
-            exit"
-      - run:
-          name: Copy files
-          command: |
-            scp /build $SSH_USER@$SSH_HOST:/tmp
+            ssh $SSH_USER@$SSH_HOST "mkdir tmp |  exit"
+            scp * $SSH_USER@$SSH_HOST:/tmp
           
 workflows:
   build_test_deploy: 
