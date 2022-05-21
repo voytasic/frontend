@@ -21,10 +21,9 @@ jobs:
           paths:
             - build/* 
   deploy:
+    working_directory: ~/project
     machine:
       image: ubuntu-2004:202010-01
-      - attach_workspace:
-          at: ./
       # deployment to Heroku
       # - checkout
       # - heroku/deploy-via-git:
@@ -34,6 +33,9 @@ jobs:
       # deployment to reactcode.pl
 
     steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
       - add_ssh_keys:
             fingerprints:
               - "2a:ed:4a:84:3a:ef:67:f3:90:b6:a8:a8:47:d5:28:38"
