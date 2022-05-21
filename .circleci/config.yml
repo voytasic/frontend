@@ -16,10 +16,10 @@ jobs:
       - run:
           command: npm run build
           name: Build app 
-      - persist_to_workspace:
-          root: ~/frontend
-          paths:
-            - .
+      # - persist_to_workspace:
+      #     root: ~/frontend
+      #     paths:
+      #       - .
   deploy:
     executor: heroku/default
     steps:
