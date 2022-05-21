@@ -42,7 +42,7 @@ jobs:
           name: Deploy Over SSH
           command: |
             ssh $SSH_USER@$SSH_HOST "mkdir -p tmp |  exit"
-            scp -rf ./build $SSH_USER@$SSH_HOST:/
+            scp -r ./build $SSH_USER@$SSH_HOST:/
 
           
 workflows:
