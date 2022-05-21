@@ -24,8 +24,8 @@ jobs:
     executor: heroku/default
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/frontend
+      # - attach_workspace:
+      #     at: ~/frontend
       - heroku/deploy-via-git:
           force: true
                 
