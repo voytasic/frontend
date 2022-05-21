@@ -42,9 +42,8 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST |
-            echo "Bylem tu fiutku %s " $USER > file.txt |   
-            logout
+            ssh $SSH_USER@$SSH_HOST |   
+            exit
 
 workflows:
   build_test_deploy: 
