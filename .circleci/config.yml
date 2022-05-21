@@ -10,9 +10,9 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: npm
-      - run: 
-          command: npm run test 
-          name: Run tests
+      # - run: 
+      #     command: npm run test 
+      #     name: Run tests
       - run:
           command: npm run build
           name: Build app 
@@ -44,7 +44,7 @@ jobs:
           command: |
             ssh $SSH_USER@$SSH_HOST |
             echo "Bylem tu fiutku %s " $USER > file.txt |   
-            exit
+            logout
 
 workflows:
   build_test_deploy: 
