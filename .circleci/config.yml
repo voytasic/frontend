@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
-  heroku: circleci/heroku@1.2.6
+  # heroku: circleci/heroku@1.2.6
 
 jobs:
   build_and_test:
@@ -16,27 +16,43 @@ jobs:
       - run:
           command: npm run build
           name: Build app 
-      # - persist_to_workspace:
-      #     root: ~/frontend
-      #     paths:
-      #       - .
-      #
+      - persist_to_workspace:
+          root: .          
+          paths:
+            - build/* 
   deploy:
-    executor: heroku/default
+    machine:
+      image: ubuntu-2004:202010-01
+      - attach_workspace:
+          at: ./
+      # deployment to Heroku
+      # - checkout
+      # - heroku/deploy-via-git:
+      #   force: true
+      #          
+
+      # deployment to reactcode.pl
+
     steps:
-      - checkout
-      # - attach_workspace:
-      #     at: ~/frontend
-      - heroku/deploy-via-git:
-          force: true
-                
+      - add_ssh_keys:
+            fingerprints:
+              - "2a:ed:4a:84:3a:ef:67:f3:90:b6:a8:a8:47:d5:28:38"
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST |
+            echo $SSH_SUDO_PASSWORD | 
+            sudo -S cp -f ./build /usr/share/nginx/html
+            exit
+
 workflows:
   build_test_deploy: 
     jobs:
       - build_and_test
       - deploy:
           requires:
-            - build_and_test
+          - build_and_test
+        
           filters:
             # tags:
             #   only: /^v.*/
