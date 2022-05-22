@@ -41,9 +41,9 @@ jobs:
           name: Deploy Over SSH
           command: |
             ssh $SSH_USER@$SSH_HOST "mkdir -p tmp |  exit"
-            scp -r ./build/ $SSH_USER@$SSH_HOST:~/tmp
-            ssh $SSH_USER@$SSH_HOST "sudo cp -rf ~/tmp/ /usr/share/nginx/html | exit"
-            
+            scp -r ./build/ $SSH_USER@$SSH_HOST:~/tmp/
+            ssh $SSH_USER@$SSH_HOST "sudo cp -rf ~/tmp/ /usr/share/nginx/html/ | exit"
+
 workflows:
   build_test_deploy:
     jobs:
