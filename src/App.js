@@ -13,11 +13,12 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React & Docker
+          Learn React
         </a>
+        <p>&</p>
         <a
           className="App-link"
-          href="https://reactjs.or"
+          href="https://docker.com"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -26,7 +27,7 @@ function App() {
 
         </span>
 
-        <p>App #7</p>
+        <p>App #8</p>
       </header>
     </div>
   );
