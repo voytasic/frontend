@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST "rm -rf tmp | mkdir tmp |  exit"
+            ssh $SSH_USER@$SSH_HOST "sudo rm -rf /tmp/* | sudo mkdir /tmp |  exit"
             scp -r ./build/* $SSH_USER@$SSH_HOST:~/tmp
             ssh $SSH_USER@$SSH_HOST "sudo rm -rf /usr/share/nginx/html/* | sudo cp -rf /tmp/* /usr/share/nginx/html | exit"
 
