@@ -10,6 +10,8 @@
 
 # production
 /build
+# SSK Keys
+circleci*
 
 # misc
 .DS_Store
