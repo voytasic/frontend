@@ -10,18 +10,17 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: npm
-      # - run: 
-      #     command: npm run test 
+      # - run:
+      #     command: npm run test
       #     name: Run tests
       - run:
           command: npm run build
-          name: Build app 
+          name: Build app
       - persist_to_workspace:
-          root: ~/project         
+          root: ~/project
           paths:
             - build/*
   deploy: # deployment to reactcode.pl
-
     working_directory: ~/project
     machine:
       image: ubuntu-2004:202010-01
@@ -29,7 +28,7 @@ jobs:
       # - checkout
       # - heroku/deploy-via-git:
       #   force: true
-      #          
+      #
 
     steps:
       - checkout
@@ -41,22 +40,20 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
+            ssh $SSH_USER@$SSH_HOST "mkdir -p tmp |  exit"
             scp -r ./build/* $SSH_USER@$SSH_HOST:~/tmp
+            ssh $SSH_USER@$SSH_HOST "sudo cp -rf ~/tmp/* /usr/share/nginx/html | exit"
 
-          # ssh $SSH_USER@$SSH_HOST "mkdir -p tmp |  exit"
-          
 workflows:
-  build_test_deploy: 
+  build_test_deploy:
     jobs:
       - build_and_test
       - deploy:
           requires:
-          - build_and_test
-        
+            - build_and_test
+
           filters:
             # tags:
             #   only: /^v.*/
             branches:
               only: master
-    
-    
