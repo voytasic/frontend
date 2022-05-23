@@ -24,10 +24,8 @@ function App() {
         >
           Learn Docker
         </a>
-
         </span>
-
-        <p>App #9</p>
+        <p>App v.1.0.10</p>
       </header>
     </div>
   );
