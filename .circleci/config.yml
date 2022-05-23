@@ -7,6 +7,7 @@ jobs:
   build_and_test:
     executor: node/default
     steps:
+       # get source code from github
       - checkout
       - node/install-packages:
           pkg-manager: npm
@@ -31,6 +32,7 @@ jobs:
       #
 
     steps:
+      # get source code from github
       - checkout
       - attach_workspace:
           at: ~/project
