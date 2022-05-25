@@ -18,17 +18,8 @@ function App() {
         >
           Learn React
         </a>
-        <p>&</p>
-        <a
-          className="App-link"
-          href="https://docker.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Docker
-        </a>
         </span>
-        <p>App v1.0.1</p>
+        <p>App v.0.0.13</p>
       </header>
     </div>
   );
