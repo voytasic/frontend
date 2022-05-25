@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -25,7 +28,7 @@ function App() {
           Learn Docker
         </a>
         </span>
-        <p>App v.1.0.12</p>
+        <p>App v1.0.1</p>
       </header>
     </div>
   );
